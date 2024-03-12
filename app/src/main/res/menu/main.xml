@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/filter_list"
+        android:title="@string/filter"
+        app:showAsAction="ifRoom">
+        <menu>
+            <group
+                android:id="@+id/filterApps"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/userApps"
+                    android:checked="true"
+                    android:title="@string/userApps"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/systemApps"
+                    android:title="@string/systemApps"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/allApps"
+                    android:title="@string/allApps"
+                    app:showAsAction="never" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:icon="@drawable/sort"
+        android:title="@string/sort"
+        app:showAsAction="ifRoom">
+        <menu>
+            <group
+                android:id="@+id/sortApps"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/byName"
+                    android:checked="true"
+                    android:title="@string/byName"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/byLastUpdateTime"
+                    android:title="@string/byLastUpdateTime"
+                    app:showAsAction="never" />
+            </group>
+        </menu>
+    </item>
+</menu>
