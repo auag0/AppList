@@ -1,8 +1,6 @@
 package io.github.auag0.applist
 
 import android.annotation.SuppressLint
-import android.text.SpannableStringBuilder
-import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +16,9 @@ import com.google.android.material.textview.MaterialTextView
 import io.github.auag0.applist.PrefManager.AppSort.ByLastUpdateTime
 import io.github.auag0.applist.PrefManager.AppSort.ByName
 import io.github.auag0.applist.PrefManager.appSort
+import io.github.auag0.applist.utils.TextUtils
 import me.zhanghai.android.fastscroll.PopupTextProvider
+import java.util.Calendar
 import java.util.Locale
 
 class AppAdapter(
@@ -75,28 +75,16 @@ class AppAdapter(
             Glide.with(appIcon).load(appItem.packageInfo).into(appIcon)
             appPackageName.text = appItem.packageName
 
-            val name = appItem.name.toString().lowercase()
-            val searchQuery = currentSearchQuery?.lowercase()
-            if (searchQuery.isNullOrBlank()) {
-                appName.text = name
+            val name = appItem.name.toString()
+            val searchQuery = currentSearchQuery
+            appName.text = if (searchQuery.isNullOrBlank()) {
+                name
             } else {
-                val index = name.indexOf(searchQuery, ignoreCase = true)
-                if (index != -1) {
-                    val color = MaterialColors.getColor(
-                        appName,
-                        com.google.android.material.R.attr.colorPrimary
-                    )
-                    val spannable = SpannableStringBuilder(name)
-                    spannable.setSpan(
-                        ForegroundColorSpan(color),
-                        index,
-                        index + searchQuery.length,
-                        0
-                    )
-                    appName.text = spannable
-                } else {
-                    appName.text = name
-                }
+                val color = MaterialColors.getColor(
+                    appName,
+                    com.google.android.material.R.attr.colorPrimary
+                )
+                TextUtils.colorizeText(name, searchQuery, color)
             }
 
             val anim = AnimationUtils.loadAnimation(itemView.context, R.anim.list_app_item)
@@ -114,12 +102,12 @@ class AppAdapter(
         return when (currentAppSort) {
             ByName -> item.name.first().uppercase(Locale.getDefault())
             ByLastUpdateTime -> {
-                val calendar = java.util.Calendar.getInstance()
+                val calendar = Calendar.getInstance()
                 calendar.timeInMillis = item.lastUpdateTime
-                val year = calendar.get(java.util.Calendar.YEAR)
-                val month = calendar.get(java.util.Calendar.MONTH) + 1
-                val day = calendar.get(java.util.Calendar.DAY_OF_MONTH)
-                return "%04d/%02d/%02d".format(year, month, day)
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH) + 1
+                val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+                return view.context.getString(R.string.date, year, month, dayOfMonth)
             }
         }
     }
