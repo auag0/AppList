@@ -1,4 +1,4 @@
-package io.github.auag0.applist
+package io.github.auag0.applist.views
 
 import android.content.Context
 import android.text.Editable
@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import com.google.android.material.appbar.MaterialToolbar
+import io.github.auag0.applist.R
 
 class SearchBar @JvmOverloads constructor(
     context: Context,

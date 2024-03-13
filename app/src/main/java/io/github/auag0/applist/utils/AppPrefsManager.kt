@@ -1,10 +1,10 @@
-package io.github.auag0.applist
+package io.github.auag0.applist.utils
 
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import io.github.auag0.applist.MyApp.Companion.myApp
 
-object PrefManager {
+object AppPrefsManager {
     private val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(myApp)
 
     enum class AppFilter {

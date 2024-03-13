@@ -1,4 +1,4 @@
-package io.github.auag0.applist
+package io.github.auag0.applist.main
 
 import android.content.pm.PackageInfo
 

@@ -1,4 +1,4 @@
-package io.github.auag0.applist
+package io.github.auag0.applist.main
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.textview.MaterialTextView
-import io.github.auag0.applist.PrefManager.AppSort.ByLastUpdateTime
-import io.github.auag0.applist.PrefManager.AppSort.ByName
-import io.github.auag0.applist.PrefManager.appSort
+import io.github.auag0.applist.R
+import io.github.auag0.applist.utils.AppPrefsManager
+import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByLastUpdateTime
+import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByName
+import io.github.auag0.applist.utils.AppPrefsManager.appSort
 import io.github.auag0.applist.utils.TextUtils
 import me.zhanghai.android.fastscroll.PopupTextProvider
 import java.util.Calendar
@@ -34,7 +36,7 @@ class AppAdapter(
         }
     }
 ), PopupTextProvider {
-    private var currentAppSort: PrefManager.AppSort = ByName
+    private var currentAppSort: AppPrefsManager.AppSort = ByName
     private var currentSearchQuery: String? = null
 
     private fun updateCurrentValue() {

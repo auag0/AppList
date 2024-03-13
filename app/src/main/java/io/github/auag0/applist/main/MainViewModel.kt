@@ -1,11 +1,12 @@
-package io.github.auag0.applist
+package io.github.auag0.applist.main
 
 import android.app.Application
 import android.content.pm.ApplicationInfo.FLAG_SYSTEM
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.auag0.applist.PrefManager.AppSort.ByLastUpdateTime
-import io.github.auag0.applist.PrefManager.AppSort.ByName
+import io.github.auag0.applist.utils.AppPrefsManager
+import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByLastUpdateTime
+import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByName
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -40,10 +41,6 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         filterAndSortAppList()
     }
 
-    fun getSearchQuery(): String? {
-        return this.searchQuery
-    }
-
     fun loadAppList() {
         viewModelScope.launch(Dispatchers.IO) {
             _progress.emit(null)
@@ -76,10 +73,10 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     fun filterAndSortAppList() {
         viewModelScope.launch(Dispatchers.IO) {
             var appList = _appList
-            val predicate: ((AppItem) -> Boolean) = when (PrefManager.appFilter) {
-                PrefManager.AppFilter.UserApps -> { appItem -> !appItem.isSystem }
-                PrefManager.AppFilter.SystemApps -> { appItem -> appItem.isSystem }
-                PrefManager.AppFilter.AllApps -> { _ -> true }
+            val predicate: ((AppItem) -> Boolean) = when (AppPrefsManager.appFilter) {
+                AppPrefsManager.AppFilter.UserApps -> { appItem -> !appItem.isSystem }
+                AppPrefsManager.AppFilter.SystemApps -> { appItem -> appItem.isSystem }
+                AppPrefsManager.AppFilter.AllApps -> { _ -> true }
             }
             appList = appList.filter(predicate)
 
@@ -91,7 +88,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             val comparator: Comparator<AppItem> = if (isSearching) {
                 compareBy { it.name.indexOf(searchQuery!!) }
             } else {
-                when (PrefManager.appSort) {
+                when (AppPrefsManager.appSort) {
                     ByName -> Comparator { a, b ->
                         Collator.getInstance(Locale.getDefault()).compare(a.name, b.name)
                     }

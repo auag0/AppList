@@ -1,4 +1,4 @@
-package io.github.auag0.applist
+package io.github.auag0.applist.main
 
 import android.os.Bundle
 import android.text.Editable
@@ -19,13 +19,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.progressindicator.LinearProgressIndicator
-import io.github.auag0.applist.PrefManager.AppFilter.AllApps
-import io.github.auag0.applist.PrefManager.AppFilter.SystemApps
-import io.github.auag0.applist.PrefManager.AppFilter.UserApps
-import io.github.auag0.applist.PrefManager.AppSort.ByLastUpdateTime
-import io.github.auag0.applist.PrefManager.AppSort.ByName
-import io.github.auag0.applist.PrefManager.appFilter
-import io.github.auag0.applist.PrefManager.appSort
+import io.github.auag0.applist.R
+import io.github.auag0.applist.utils.AppPrefsManager.AppFilter.AllApps
+import io.github.auag0.applist.utils.AppPrefsManager.AppFilter.SystemApps
+import io.github.auag0.applist.utils.AppPrefsManager.AppFilter.UserApps
+import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByLastUpdateTime
+import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByName
+import io.github.auag0.applist.utils.AppPrefsManager.appFilter
+import io.github.auag0.applist.utils.AppPrefsManager.appSort
+import io.github.auag0.applist.views.SearchBar
 import kotlinx.coroutines.launch
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
