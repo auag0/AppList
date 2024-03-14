@@ -2,8 +2,11 @@ package io.github.auag0.applist.main
 
 import android.app.Application
 import android.content.pm.ApplicationInfo.FLAG_SYSTEM
+import android.content.pm.PackageManagerHidden
+import android.os.Process
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import dev.rikka.tools.refine.Refine
 import io.github.auag0.applist.utils.AppPrefsManager
 import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByLastUpdateTime
 import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByName
@@ -46,7 +49,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             _progress.emit(null)
             _appList = emptyList()
             try {
-                val installedPackages = pm.getInstalledPackages(0)
+                val hiddenPM = Refine.unsafeCast<PackageManagerHidden>(pm)
+                val installedPackages = hiddenPM.getInstalledPackagesAsUser(0, Process.myUserHandle().hashCode())
                 val max = installedPackages.size
                 _progress.emit(Progress(0, max))
                 val appList = installedPackages.mapIndexed { index, packageInfo ->

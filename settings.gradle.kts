@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":hidden-api2")
+
+
 pluginManagement {
     repositories {
         google {
@@ -23,4 +26,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "AppList"
-include(":app")
+include(":app", ":hidden-api")
