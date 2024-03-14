@@ -18,6 +18,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import io.github.auag0.applist.R
 import io.github.auag0.applist.utils.AppPrefsManager.AppFilter.AllApps
@@ -68,6 +70,20 @@ class MainActivity : AppCompatActivity() {
         })
 
         val progressIndicator: LinearProgressIndicator = findViewById(R.id.linearProgressIndicator)
+        val swipeRefreshLayout: SwipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
+        val progressBgColor = MaterialColors.getColor(
+            swipeRefreshLayout,
+            com.google.android.material.R.attr.colorPrimaryContainer
+        )
+        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(progressBgColor)
+        val progressColor = MaterialColors.getColor(
+            swipeRefreshLayout,
+            com.google.android.material.R.attr.colorPrimary
+        )
+        swipeRefreshLayout.setColorSchemeColors(progressColor)
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.loadAppList()
+        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -83,10 +99,12 @@ class MainActivity : AppCompatActivity() {
                     viewModel.progress.collect { progress ->
                         if (progress == null) {
                             progressIndicator.visibility = View.GONE
+                            swipeRefreshLayout.isRefreshing = false
                         } else {
                             progressIndicator.visibility = View.VISIBLE
                             progressIndicator.max = progress.max
                             progressIndicator.setProgressCompat(progress.current, true)
+                            swipeRefreshLayout.isRefreshing = true
                         }
                     }
                 }
