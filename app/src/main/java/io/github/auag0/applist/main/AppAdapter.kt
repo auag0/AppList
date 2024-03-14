@@ -86,7 +86,7 @@ class AppAdapter(
                     appName,
                     com.google.android.material.R.attr.colorPrimary
                 )
-                TextUtils.colorizeText(name, searchQuery, color)
+                TextUtils.colorizeText(name, searchQuery, color, true)
             }
 
             val anim = AnimationUtils.loadAnimation(itemView.context, R.anim.list_app_item)
