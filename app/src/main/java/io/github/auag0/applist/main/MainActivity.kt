@@ -27,6 +27,7 @@ import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByName
 import io.github.auag0.applist.utils.AppPrefsManager.appFilter
 import io.github.auag0.applist.utils.AppPrefsManager.appSort
 import io.github.auag0.applist.views.SearchBar
+import io.github.auag0.applist.core.base.BaseActivity
 import io.github.auag0.applist.core.utils.AppPrefsManager.AppFilter.AllApps
 import io.github.auag0.applist.core.utils.AppPrefsManager.AppFilter.SystemApps
 import io.github.auag0.applist.core.utils.AppPrefsManager.AppFilter.UserApps
@@ -38,20 +39,14 @@ import io.github.auag0.applist.core.views.SearchBar
 import kotlinx.coroutines.launch
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         val searchBar: SearchBar = findViewById(R.id.searchBar)
         setSupportActionBar(searchBar)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         val adapter = AppAdapter(viewModel)
