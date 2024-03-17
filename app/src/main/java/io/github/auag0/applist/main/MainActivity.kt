@@ -16,14 +16,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.color.MaterialColors
 import io.github.auag0.applist.R
-import io.github.auag0.applist.utils.AppPrefsManager.AppFilter.AllApps
-import io.github.auag0.applist.utils.AppPrefsManager.AppFilter.SystemApps
-import io.github.auag0.applist.utils.AppPrefsManager.AppFilter.UserApps
-import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByLastUpdateTime
-import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByName
-import io.github.auag0.applist.utils.AppPrefsManager.appFilter
-import io.github.auag0.applist.utils.AppPrefsManager.appSort
-import io.github.auag0.applist.views.SearchBar
+import io.github.auag0.applist.appdetails.AppDetailsActivity
 import io.github.auag0.applist.core.base.BaseActivity
 import io.github.auag0.applist.core.utils.AppPrefsManager.AppFilter.AllApps
 import io.github.auag0.applist.core.utils.AppPrefsManager.AppFilter.SystemApps
@@ -46,7 +39,7 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.searchBar)
 
-        val adapter = AppAdapter(viewModel)
+        val adapter = AppAdapter(viewModel, ::onAppClicked)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -157,5 +150,12 @@ class MainActivity : BaseActivity() {
                 }
             }
         })
+    }
+
+    private fun onAppClicked(appItem: AppItem) {
+        val intent = Intent(this, AppDetailsActivity::class.java).apply {
+            putExtra("appItem", appItem)
+        }
+        startActivity(intent)
     }
 }

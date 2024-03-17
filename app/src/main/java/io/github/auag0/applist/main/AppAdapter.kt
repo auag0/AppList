@@ -24,7 +24,8 @@ import java.util.Calendar
 import java.util.Locale
 
 class AppAdapter(
-    private val viewModel: MainViewModel
+    private val viewModel: MainViewModel,
+    private val onAppClicked: (AppItem) -> Unit
 ) : ListAdapter<AppItem, AppAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<AppItem>() {
         override fun areItemsTheSame(oldItem: AppItem, newItem: AppItem): Boolean {
@@ -87,6 +88,10 @@ class AppAdapter(
                     com.google.android.material.R.attr.colorPrimary
                 )
                 TextUtils.colorizeText(name, searchQuery, color, true)
+            }
+
+            itemView.setOnClickListener {
+                onAppClicked(appItem)
             }
 
             val anim = AnimationUtils.loadAnimation(itemView.context, R.anim.list_app_item)
