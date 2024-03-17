@@ -3,6 +3,7 @@ package io.github.auag0.applist.main
 import android.content.pm.PackageInfo
 import android.os.Parcel
 import android.os.Parcelable
+import io.github.auag0.applist.core.compat.ParcelCompat.readParcelable
 
 data class AppItem(
     val packageInfo: PackageInfo,
@@ -12,7 +13,7 @@ data class AppItem(
     val lastUpdateTime: Long
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readParcelable(PackageInfo::class.java.classLoader)!!,
+        parcel.readParcelable()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readByte() != 0.toByte(),
