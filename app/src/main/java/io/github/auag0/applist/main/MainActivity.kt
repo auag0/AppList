@@ -1,5 +1,6 @@
 package io.github.auag0.applist.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,12 +8,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -30,6 +27,14 @@ import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByName
 import io.github.auag0.applist.utils.AppPrefsManager.appFilter
 import io.github.auag0.applist.utils.AppPrefsManager.appSort
 import io.github.auag0.applist.views.SearchBar
+import io.github.auag0.applist.core.utils.AppPrefsManager.AppFilter.AllApps
+import io.github.auag0.applist.core.utils.AppPrefsManager.AppFilter.SystemApps
+import io.github.auag0.applist.core.utils.AppPrefsManager.AppFilter.UserApps
+import io.github.auag0.applist.core.utils.AppPrefsManager.AppSort.ByLastUpdateTime
+import io.github.auag0.applist.core.utils.AppPrefsManager.AppSort.ByName
+import io.github.auag0.applist.core.utils.AppPrefsManager.appFilter
+import io.github.auag0.applist.core.utils.AppPrefsManager.appSort
+import io.github.auag0.applist.core.views.SearchBar
 import kotlinx.coroutines.launch
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 

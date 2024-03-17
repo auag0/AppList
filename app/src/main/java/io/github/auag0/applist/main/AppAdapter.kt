@@ -14,11 +14,11 @@ import com.bumptech.glide.Glide
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.textview.MaterialTextView
 import io.github.auag0.applist.R
-import io.github.auag0.applist.utils.AppPrefsManager
-import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByLastUpdateTime
-import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByName
-import io.github.auag0.applist.utils.AppPrefsManager.appSort
-import io.github.auag0.applist.utils.TextUtils
+import io.github.auag0.applist.core.utils.AppPrefsManager
+import io.github.auag0.applist.core.utils.AppPrefsManager.AppSort.ByLastUpdateTime
+import io.github.auag0.applist.core.utils.AppPrefsManager.AppSort.ByName
+import io.github.auag0.applist.core.utils.AppPrefsManager.appSort
+import io.github.auag0.applist.core.utils.TextUtils
 import me.zhanghai.android.fastscroll.PopupTextProvider
 import java.util.Calendar
 import java.util.Locale

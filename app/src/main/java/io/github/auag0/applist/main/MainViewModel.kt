@@ -4,9 +4,9 @@ import android.app.Application
 import android.content.pm.ApplicationInfo.FLAG_SYSTEM
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.auag0.applist.utils.AppPrefsManager
-import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByLastUpdateTime
-import io.github.auag0.applist.utils.AppPrefsManager.AppSort.ByName
+import io.github.auag0.applist.core.utils.AppPrefsManager
+import io.github.auag0.applist.core.utils.AppPrefsManager.AppSort.ByLastUpdateTime
+import io.github.auag0.applist.core.utils.AppPrefsManager.AppSort.ByName
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

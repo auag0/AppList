@@ -1,4 +1,4 @@
-package io.github.auag0.applist.utils
+package io.github.auag0.applist.core.utils
 
 import android.text.Spannable
 import android.text.SpannableStringBuilder

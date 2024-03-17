@@ -1,4 +1,4 @@
-package io.github.auag0.applist.views
+package io.github.auag0.applist.core.views
 
 import android.content.Context
 import android.text.Editable

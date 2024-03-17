@@ -1,4 +1,4 @@
-package io.github.auag0.applist.utils.glide
+package io.github.auag0.applist.core.utils.glide
 
 import android.content.Context
 import android.content.pm.PackageInfo
