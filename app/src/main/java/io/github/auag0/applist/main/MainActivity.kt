@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.color.MaterialColors
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.auag0.applist.R
 import io.github.auag0.applist.appdetails.AppDetailsActivity
 import io.github.auag0.applist.core.base.BaseActivity
@@ -29,6 +30,7 @@ import io.github.auag0.applist.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
@@ -84,18 +86,13 @@ class MainActivity : BaseActivity() {
                 }
 
                 launch {
-                    viewModel.progress.collect { progress ->
-                        if (progress == null) {
+                    viewModel.isLoading.collect { isLoading ->
+                        if (isLoading) {
+                            binding.linearProgressIndicator.visibility = View.VISIBLE
+                            binding.swipeRefreshLayout.isRefreshing = true
+                        } else {
                             binding.linearProgressIndicator.visibility = View.GONE
                             binding.swipeRefreshLayout.isRefreshing = false
-                        } else {
-                            binding.linearProgressIndicator.visibility = View.VISIBLE
-                            binding.linearProgressIndicator.max = progress.max
-                            binding.linearProgressIndicator.setProgressCompat(
-                                progress.current,
-                                true
-                            )
-                            binding.swipeRefreshLayout.isRefreshing = true
                         }
                     }
                 }
