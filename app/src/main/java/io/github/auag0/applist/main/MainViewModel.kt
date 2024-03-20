@@ -71,7 +71,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun filterAndSortAppList() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Default) {
             var appList = _appList
             val predicate: ((AppItem) -> Boolean) = when (AppPrefsManager.appFilter) {
                 AppPrefsManager.AppFilter.UserApps -> { appItem -> !appItem.isSystem }
