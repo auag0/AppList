@@ -6,8 +6,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import io.github.auag0.applist.repository.domain.AppsRepository
 import io.github.auag0.applist.repository.AppsRepositoryImpl
+import io.github.auag0.applist.repository.domain.AppsRepository
 import javax.inject.Singleton
 
 @Module
