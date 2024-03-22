@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppList</string>
+    <string name="app_name" translatable="false">AppList</string>
     <string name="app_icon_desc">app icon</string>
     <string name="userApps">User Apps</string>
     <string name="systemApps">System Apps</string>

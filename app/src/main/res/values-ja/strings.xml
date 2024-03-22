@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_icon_desc">アプリ アイコン</string>
+    <string name="userApps">ユーザーアプリ</string>
+    <string name="systemApps">システムアプリ</string>
+    <string name="allApps">すべてのアプリ</string>
+    <string name="byName">名前順</string>
+    <string name="byLastUpdateTime">最終更新時間順</string>
+    <string name="filter">フィルター</string>
+    <string name="sort">並び替え</string>
+    <string name="hint_search">検索</string>
+    <string name="date">%04d年%02d月%02d日</string>
+</resources>
